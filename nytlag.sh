@@ -13,12 +13,13 @@
 
 # provide login credentaion to the remote server
 
-USER_NAME="ec2-user"
-host="ec2-44-202-30-167.compute-1.amazonaws.com"
-key="nytlag_test.pem"
-setup_file="remote.sh"
+USER_NAME="<remote user name>"
+host="<place host name>"
+key="< *.pem file>"
 
 #############
+setup_file="remote.sh"
+
 # function to track CTRL + xxx command
 function trap_ctrlc ()
 {

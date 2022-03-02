@@ -1,8 +1,6 @@
+-- Step 4:
 -- Section 1--------------
-
--- 1.1 ---
-
--- 1.2.  all the airlines that flew that (JFK-ORD) route in 2018,
+-- all the airlines that flew that (JFK-ORD) route in 2018,
 -- what is the textual name of each airline and the average departure delay in
 -- minutes for that route, in order of smallest delay to largest delay.
 

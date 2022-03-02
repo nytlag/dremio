@@ -31,6 +31,18 @@ FROM "dremio-tech-challenge"."dremio-tech-challenge".flights o ORDER BY FL_DATE 
 
 
 -- Section 3 Dashboard Simulation ----
+
+-- Preparation layer:
+-- flights.csv
+SELECT fl_date, op_carrier, OP_CARRIER_FL_NUM, ORIGIN, DEST, CRS_DEP_TIME, DEP_TIME, DEPARTURE_DELAY, TAXI_OUT, WHEELS_OFF, WHEELS_ON, TAXI_IN, CRS_ARR_TIME, ARR_TIME, ARR_DELAY, CANCELLED, CANCELLATION_CODE, DIVERTED, CRS_ELAPSED_TIME, ACTUAL_ELAPSED_TIME, AIR_TIME, CONVERT_TO_FLOAT(DISTANCE, 1, 1, 0) AS DISTANCE, CARRIER_DELAY, WEATHER_DELAY, NAS_DELAY, SECURITY_DELAY, LATE_AIRCRAFT_DELAY
+FROM (
+  SELECT TO_DATE(fl_date, 'YYYY-MM-DD', 1) AS fl_date, op_carrier, OP_CARRIER_FL_NUM, ORIGIN, DEST, CRS_DEP_TIME, DEP_TIME, CONVERT_TO_FLOAT(DEP_DELAY, 1, 1, 0) AS DEPARTURE_DELAY, TAXI_OUT, WHEELS_OFF, WHEELS_ON, TAXI_IN, CRS_ARR_TIME, ARR_TIME, ARR_DELAY, CANCELLED, CANCELLATION_CODE, DIVERTED, CRS_ELAPSED_TIME, ACTUAL_ELAPSED_TIME, AIR_TIME, DISTANCE, CARRIER_DELAY, WEATHER_DELAY, NAS_DELAY, SECURITY_DELAY, LATE_AIRCRAFT_DELAY
+  from "dremio-tech-challenge"."dremio-tech-challenge".flights
+  where cancelled='0.0' AND  fl_date>'2017-12-31' AND fl_date<'2019-01-01'
+) nested_0
+
+
+
 -- Step 1 - Create VDS to Conform to Table Definition
 
 select nested_1.airline_code as airline_code, nested_1.airline_name as airline_name, nested_1.fl_date as fl_date, nested_1.departure_delay as departure_delay, nested_1.route as route, nested_1.distance as distance, nested_1.origin as origin, nested_1.origin_airport_name as origin_airport_name, nested_1.origin_latitude as origin_latitude, nested_1.origin_longitude as origin_longitude, nested_1.dest as dest, join_dest_airport_codes.dest_airport_name as dest_airport_name, join_dest_airport_codes.dest_latitude as dest_latitude, join_dest_airport_codes.dest_longitude as dest_longitude

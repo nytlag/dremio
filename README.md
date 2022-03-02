@@ -5,3 +5,4 @@ Sample shell script performs installation of the Dremio Community Edition applic
 nytlag.sh – run this ./nytlag.sh from the command line. It will copy remote.sh script onto a remote host and will clean up the files after completing the installation.
 remote.sh – runs on a remote host and performs Java JDK setup, Dremio software download
 
+sql-tasks.sql - queries virtual datasets in Dremio application. Datasets container sample data about flights made by airlines in the US.
